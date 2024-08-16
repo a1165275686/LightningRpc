@@ -12,25 +12,24 @@ Spring Boot Starter 注解驱动开发等
 
 # 技术选型
 ## 后端
-⭐️ Vert.x 框架
-⭐️ Etcd 云原生存储中间件（jetcd 客户端）
-ZooKeeper 分布式协调工具（curator 客户端）
-⭐️ SPI 机制
-⭐️ 多种序列化器
-JSON 序列化
-Kryo 序列化
-Hessian 序列化
-⭐️ 多种设计模式
-双检锁单例模式
-工厂模式
-代理模式
-装饰者模式
-⭐️ Spring Boot Starter 开发
-反射和注解驱动
-Guava Retrying 重试库
-JUnit 单元测试
-Logback 日志库
-Hutool、Lombok 工具库
+* Vert.x 框架
+* Etcd 云原生存储中间件（jetcd 客户端）
+* ZooKeeper 分布式协调工具（curator 客户端）
+* SPI 机制
+* 多种序列化器
+* JSON 序列化
+* Kryo 序列化
+* Hessian 序列化
+* 多种设计模式
+* 双检锁单例模式
+* 工厂模式
+* 代理模式
+* 装饰者模式
+* Spring Boot Starter 开发
+* Guava Retrying 重试库
+* JUnit 单元测试
+* Logback 日志库
+* Hutool、Lombok 工具库
 
 # 目录解释
 * example-common   公共模块
