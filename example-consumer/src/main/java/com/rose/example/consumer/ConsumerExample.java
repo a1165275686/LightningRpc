@@ -1,15 +1,22 @@
 package com.rose.example.consumer;
 
-import com.rose.lrpc.config.RpcConfig;
-import com.rose.lrpc.utils.ConfigUtils;
+import com.rose.example.common.model.User;
+import com.rose.example.common.service.UserService;
+import com.rose.lrpc.Proxy.ServiceProxyFactory;
 
 public class ConsumerExample {
     public static void main(String[] args) {
-        RpcConfig rpc  = ConfigUtils.loadConfig(RpcConfig.class,"rpc");
-        System.out.println(rpc.getName());
-        System.out.println(rpc.getVersion());
-        System.out.println(rpc.getServerHost());
-        System.out.println(rpc.getServerPort());
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+        User user = new User();
+        user.setName("rose");
+        User newUser = userService.getUser(user);
+        if(newUser!=null){
+            System.out.println(newUser.getName());
+        }else{
+            System.out.println("null");
+        }
+        long number = userService.getNumber();
+        System.out.println(number);
 
     }
 }
