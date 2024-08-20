@@ -5,10 +5,14 @@ import lombok.Data;
 @Data
 public class RpcConfig {
 
-    /**
-     * 模拟调用
-     */
 
+    /**
+     * 序列化器
+     */
+    private String serializer = "SerializerKeys.JDK";
+    /**
+     * 是否启用mock
+     */
     private boolean mock = false;
     /**
      * 服务名称
