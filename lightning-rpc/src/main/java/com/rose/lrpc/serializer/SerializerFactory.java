@@ -1,6 +1,11 @@
 package com.rose.lrpc.serializer;
 
+import com.rose.lrpc.spi.SpiLoader;
+
 public class SerializerFactory {
+    static {
+        SpiLoader.load(Serializer.class);
+    }
 
     /**
      * 默认序列化器

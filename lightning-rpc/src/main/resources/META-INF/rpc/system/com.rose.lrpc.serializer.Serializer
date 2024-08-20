@@ -1,0 +1,5 @@
+jdk = com.rose.lrpc.serializer.JdkSerializer
+e = com.rose.lrpc.serializer.HessianSerializer
+json = com.rose.lrpc.serializer.JsonSerializer
+kryo = com.rose.lrpc.serializer.KryoSerializer
+
