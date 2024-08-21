@@ -2,6 +2,9 @@ package com.rose.lrpc.serializer;
 
 import java.io.IOException;
 
+/**
+ * 序列化器接口
+ */
 public interface Serializer {
     /**
      * 序列化

@@ -1,37 +1,55 @@
 package com.rose.lrpc.config;
 
+import com.rose.lrpc.serializer.SerializerKeys;
 import lombok.Data;
 
 @Data
 public class RpcConfig {
 
+    /**
+     * 名称
+     */
+    private String name = "rose-rpc";
 
     /**
-     * 序列化器
-     */
-    private String serializer = "SerializerKeys.JDK";
-    /**
-     * 是否启用mock
-     */
-    private boolean mock = false;
-    /**
-     * 服务名称
-     */
-    private String name = "lightning-rpc";
-
-    /**
-     * 服务版本
+     * 版本号
      */
     private String version = "1.0";
+
     /**
-     * 服务端地址
+     * 服务器主机名
      */
     private String serverHost = "localhost";
 
     /**
-     * 服务端端口
+     * 服务器端口号
      */
     private Integer serverPort = 8080;
+
+    /**
+     * 序列化器
+     */
+    private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 负载均衡器
+     */
+    //private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    /**
+     * 重试策略
+     */
+    //private String retryStrategy = RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     */
+    //private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
+
+    /**
+     * 模拟调用
+     */
+    private boolean mock = false;
 
     /**
      * 注册中心配置

@@ -1,10 +1,11 @@
 package com.rose.lrpc.server;
 
+import com.rose.lrpc.RpcApplication;
 import com.rose.lrpc.model.RpcRequest;
 import com.rose.lrpc.model.RpcResponse;
 import com.rose.lrpc.registry.LocalRegistry;
-import com.rose.lrpc.serializer.JdkSerializer;
 import com.rose.lrpc.serializer.Serializer;
+import com.rose.lrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -15,20 +16,22 @@ import java.lang.reflect.Method;
 
 
 public class HttpServerHandler implements Handler<HttpServerRequest> {
+
     @Override
     public void handle(HttpServerRequest request) {
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // 记录日志
         System.out.println("Received request: " + request.method() + " " + request.uri());
 
         // 异步处理 HTTP 请求
+        Serializer finalSerializer = serializer;
         request.bodyHandler(body -> {
             byte[] bytes = body.getBytes();
             RpcRequest rpcRequest = null;
             try {
-                rpcRequest = serializer.deserialize(bytes, RpcRequest.class);
+                rpcRequest = finalSerializer.deserialize(bytes, RpcRequest.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -38,7 +41,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
             // 如果请求为 null，直接返回
             if (rpcRequest == null) {
                 rpcResponse.setMessage("rpcRequest is null");
-                doResponse(request, rpcResponse, serializer);
+                doResponse(request, rpcResponse, finalSerializer);
                 return;
             }
 
@@ -57,7 +60,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
                 rpcResponse.setException(e);
             }
             // 响应
-            doResponse(request, rpcResponse, serializer);
+            doResponse(request, rpcResponse, finalSerializer);
         });
     }
 

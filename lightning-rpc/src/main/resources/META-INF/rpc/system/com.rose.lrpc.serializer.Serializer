@@ -1,5 +1,4 @@
-jdk = com.rose.lrpc.serializer.JdkSerializer
-e = com.rose.lrpc.serializer.HessianSerializer
-json = com.rose.lrpc.serializer.JsonSerializer
-kryo = com.rose.lrpc.serializer.KryoSerializer
-
+jdk=com.rose.lrpc.serializer.JdkSerializer
+hessian=com.rose.lrpc.serializer.HessianSerializer
+e=com.rose.lrpc.serializer.JsonSerializer
+kryo=com.rose.lrpc.serializer.KryoSerializer

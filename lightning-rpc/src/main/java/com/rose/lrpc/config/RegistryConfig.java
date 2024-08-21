@@ -1,14 +1,16 @@
 package com.rose.lrpc.config;
 
+import com.rose.lrpc.registry.RegistryKeys;
 import lombok.Data;
 
 @Data
 public class RegistryConfig{
 
+
     /**
      * 注册中心类别
      */
-    private String registry = "etcd";
+    private String registry = RegistryKeys.ETCD;
 
     /**
      * 注册中心地址

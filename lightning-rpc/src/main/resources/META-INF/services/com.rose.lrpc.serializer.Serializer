@@ -1,3 +1,2 @@
-
-e=com.rose.lrpc.serializer.HessianSerializer
+com.rose.lrpc.serializer.JdkSerializer
 

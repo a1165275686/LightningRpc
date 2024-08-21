@@ -2,6 +2,9 @@ package com.rose.lrpc.serializer;
 
 import com.rose.lrpc.spi.SpiLoader;
 
+/**
+ * 序列化器工厂
+ */
 public class SerializerFactory {
     static {
         SpiLoader.load(Serializer.class);
@@ -19,6 +22,7 @@ public class SerializerFactory {
      * @return
      */
     public static Serializer getInstance(String key) {
+
         return SpiLoader.getInstance(Serializer.class, key);
     }
 

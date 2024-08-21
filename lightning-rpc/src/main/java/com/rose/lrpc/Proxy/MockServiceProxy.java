@@ -7,7 +7,12 @@ import java.lang.reflect.Method;
 
 @Slf4j
 public class MockServiceProxy implements InvocationHandler {
-
+    /**
+     * 调用代理
+     *
+     * @return
+     * @throws Throwable
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 根据方法的返回值类型，生成特定的默认值对象
@@ -17,7 +22,7 @@ public class MockServiceProxy implements InvocationHandler {
     }
 
     /**
-     * 生成指定类型的默认值对象
+     * 生成指定类型的默认值对象（可自行完善默认值逻辑）
      *
      * @param type
      * @return
