@@ -16,7 +16,7 @@ public class RegistryFactory {
     /**
      * 获取实例
      */
-    public static Registry getInstence(String key){
+    public static Registry getInstance(String key){
         return SpiLoader.getInstance(Registry.class, key);
     }
 }

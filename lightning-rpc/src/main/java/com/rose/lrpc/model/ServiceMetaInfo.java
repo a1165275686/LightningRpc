@@ -1,5 +1,9 @@
 package com.rose.lrpc.model;
 
+import cn.hutool.core.util.StrUtil;
+import lombok.Data;
+
+@Data
 public class ServiceMetaInfo {
 
 
@@ -48,5 +52,12 @@ public class ServiceMetaInfo {
         return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePort);
     }
 
+    public String getServiceAddress() {
+        if(!StrUtil.contains(serviceHost, "host")) {
+            return String.format("http://%s:%s", serviceHost, servicePort);
+        }
+            return String.format("%s:%s", serviceHost, servicePort);
+
+    }
 
 }

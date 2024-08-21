@@ -1,8 +1,11 @@
 package com.rose.lrpc;
 
 
+import com.rose.lrpc.config.RegistryConfig;
 import com.rose.lrpc.config.RpcConfig;
 import com.rose.lrpc.constant.RpcConstant;
+import com.rose.lrpc.registry.Registry;
+import com.rose.lrpc.registry.RegistryFactory;
 import com.rose.lrpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,6 +20,12 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, config = {}", newRpcConfig.toString());
+
+        //注册中心初始化
+        RegistryConfig registryConfig = newRpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
 
     }
 
