@@ -6,6 +6,8 @@ import cn.hutool.http.HttpResponse;
 import com.rose.lrpc.RpcApplication;
 import com.rose.lrpc.config.RpcConfig;
 import com.rose.lrpc.constant.RpcConstant;
+import com.rose.lrpc.loadbalancer.LoadBalancer;
+import com.rose.lrpc.loadbalancer.LoadBalancerFactory;
 import com.rose.lrpc.model.RpcRequest;
 import com.rose.lrpc.model.RpcResponse;
 import com.rose.lrpc.model.ServiceMetaInfo;
@@ -18,7 +20,9 @@ import com.rose.lrpc.server.tcp.VertxTcpClient;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceProxy implements InvocationHandler {
     /**
@@ -51,8 +55,15 @@ public class ServiceProxy implements InvocationHandler {
             if (CollUtil.isEmpty(serviceMetaInfoList)) {
                 throw new RuntimeException("暂无服务地址");
             }
-            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
-            // 发送 TCP 请求
+
+            // 负载均衡
+            LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+            // 将调用方法名（请求路径）作为负载均衡参数
+            Map<String, Object> requestParams = new HashMap<>();
+            requestParams.put("methodName", rpcRequest.getMethodName());
+            ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
+
+            // rpc 请求
             RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
             return rpcResponse.getData();
         } catch (Exception e) {

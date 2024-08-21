@@ -1,0 +1,3 @@
+roundRobin=com.rose.lrpc.loadbalancer.RoundRobinLoadBalancer
+random=com.rose.lrpc.loadbalancer.RandomLoadBalancer
+consistentHash=com.rose.lrpc.loadbalancer.ConsistentHashLoadBalancer

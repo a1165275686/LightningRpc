@@ -1,5 +1,6 @@
 package com.rose.lrpc.config;
 
+import com.rose.lrpc.loadbalancer.LoadBalanceKeys;
 import com.rose.lrpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -34,7 +35,7 @@ public class RpcConfig {
     /**
      * 负载均衡器
      */
-    //private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+    private String loadBalancer = LoadBalanceKeys.ROUND_ROBIN;
 
     /**
      * 重试策略
