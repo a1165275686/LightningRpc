@@ -1,0 +1,2 @@
+no=com.rose.lrpc.fault.retry.NoRetryStrategy
+fixedInterval=com.rose.lrpc.fault.retry.FixedIntervalRetryStrategy

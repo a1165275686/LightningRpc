@@ -1,5 +1,6 @@
 package com.rose.lrpc.config;
 
+import com.rose.lrpc.fault.retry.RetryStrategyKeys;
 import com.rose.lrpc.loadbalancer.LoadBalanceKeys;
 import com.rose.lrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -40,7 +41,7 @@ public class RpcConfig {
     /**
      * 重试策略
      */
-    //private String retryStrategy = RetryStrategyKeys.NO;
+    private String retryStrategy = RetryStrategyKeys.NO;
 
     /**
      * 容错策略

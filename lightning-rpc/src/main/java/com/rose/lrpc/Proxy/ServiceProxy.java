@@ -6,6 +6,8 @@ import cn.hutool.http.HttpResponse;
 import com.rose.lrpc.RpcApplication;
 import com.rose.lrpc.config.RpcConfig;
 import com.rose.lrpc.constant.RpcConstant;
+import com.rose.lrpc.fault.retry.RetryStrategy;
+import com.rose.lrpc.fault.retry.RetryStrategyFactory;
 import com.rose.lrpc.loadbalancer.LoadBalancer;
 import com.rose.lrpc.loadbalancer.LoadBalancerFactory;
 import com.rose.lrpc.model.RpcRequest;
@@ -64,12 +66,17 @@ public class ServiceProxy implements InvocationHandler {
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
 
             // rpc 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            //使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("调用失败");
         }
     }
+
 
     /**
      * 发送 HTTP 请求

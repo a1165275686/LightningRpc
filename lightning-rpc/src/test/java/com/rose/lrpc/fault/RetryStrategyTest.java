@@ -1,12 +1,12 @@
 package com.rose.lrpc.fault;
 
-import com.rose.lrpc.fault.retry.NoRetryStratrgy;
+import com.rose.lrpc.fault.retry.NoRetryStrategy;
 import com.rose.lrpc.fault.retry.RetryStrategy;
 import com.rose.lrpc.model.RpcResponse;
 import org.junit.Test;
 
 public class RetryStrategyTest {
-    RetryStrategy  retryStrategy = new NoRetryStratrgy();
+    RetryStrategy  retryStrategy = new NoRetryStrategy();
     @Test
     public void doRetry(){
         try {
