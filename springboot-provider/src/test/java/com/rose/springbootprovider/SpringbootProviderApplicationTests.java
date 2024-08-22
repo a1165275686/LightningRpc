@@ -1,10 +1,10 @@
-package com.rose.lrpcspringbootstarter;
+package com.rose.springbootprovider;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LrpcSpringBootStarterApplicationTests {
+class SpringbootProviderApplicationTests {
 
     @Test
     void contextLoads() {
