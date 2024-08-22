@@ -1,6 +1,7 @@
 package com.rose.lrpc.config;
 
 import com.rose.lrpc.fault.retry.RetryStrategyKeys;
+import com.rose.lrpc.fault.tolerant.TolerantStrategyKeys;
 import com.rose.lrpc.loadbalancer.LoadBalanceKeys;
 import com.rose.lrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -46,7 +47,7 @@ public class RpcConfig {
     /**
      * 容错策略
      */
-    //private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
     /**
      * 模拟调用
