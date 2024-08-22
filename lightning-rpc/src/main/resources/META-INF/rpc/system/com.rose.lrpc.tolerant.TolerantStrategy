@@ -1,0 +1,4 @@
+failBack = com.rose.lrpc.tolerant.FailBackTolerantStrategy
+failFast = com.rose.lrpc.tolerant.FailFastTolerantStrategy
+failOver = com.rose.lrpc.tolerant.FailOverTolerantStrategy
+failSafe = com.rose.lrpc.tolerant.FailSafeTolerantStrategy
